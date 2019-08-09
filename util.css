@@ -1,0 +1,21 @@
+span {
+	color: #AAAAAA;
+	font-family: Verdana
+}
+
+span[type="max"] {
+	font-size: 150%;
+	font-weight: bold;
+}
+
+span[type="min"] {
+	font-size: 80%;
+}
+
+span blue {
+	color: #1C96CF;
+}
+
+a {
+	text-decoration: none;
+}
