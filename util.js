@@ -55,3 +55,6 @@ function create(fill)
 	new Chart(ctx, data);
 	return true;
 }
+
+var totalDays = document.location.search.match(/[?&]d=(\d+)/);
+totalDays = totalDays ? totalDays[1] - 1 : 29;
