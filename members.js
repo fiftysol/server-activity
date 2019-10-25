@@ -5,8 +5,8 @@ var data = getData();
 
 window.onload = function()
 {
-	let days = getDate(29, -1, true);
-	let today = days[29];
+	let days = getDate(totalDays, -1, true);
+	let today = days[totalDays];
 	days.push(getDate(1)[0]);
 	data.data.labels = days;
 
@@ -15,7 +15,7 @@ window.onload = function()
 	fetch("https://discbotdb.000webhostapp.com/get?k=&f=b_serveractivity").then((d) => d.json()).then((d) => {
 		let members = [ ];
 
-		for (let i = 0; i < 30; i++)
+		for (let i = 0; i <= totalDays; i++)
 			members.push(d[days[i]] ? Object.keys(d[days[i]].l).length : 0);
 
 		data.data.datasets = [
