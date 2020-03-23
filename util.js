@@ -53,7 +53,7 @@ function create(fill)
 
 	data.options.elements.line.fill = fill;
 	var ctx = document.getElementById("chart").getContext("2d");
-	if (currentChard)
+	if (currentChart)
 		currentChart.destroy();
 	currentChart = new Chart(ctx, data);
 	return true;
