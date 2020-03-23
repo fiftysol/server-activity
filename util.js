@@ -44,6 +44,7 @@ function getData() {
 	}
 }
 
+let currentChart;
 function create(fill)
 {
 	if (!this.data) return;
@@ -52,9 +53,8 @@ function create(fill)
 
 	data.options.elements.line.fill = fill;
 	var ctx = document.getElementById("chart").getContext("2d");
-	new Chart(ctx, data);
+	if (currentChard)
+		currentChart.destroy();
+	currentChart = new Chart(ctx, data);
 	return true;
 }
-
-var totalDays = document.location.search.match(/[?&]d=(\d+)/);
-totalDays = totalDays ? totalDays[1] - 1 : 29;
