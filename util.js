@@ -29,7 +29,7 @@ function getData() {
 		type: "line",
 
 		data: { },
-	
+
 		options: {
 			elements: {
 				line: {
@@ -58,3 +58,6 @@ function create(fill)
 	currentChart = new Chart(ctx, data);
 	return true;
 }
+
+var totalDays = document.location.search.match(/[?&]d=(\d+)/);
+totalDays = totalDays ? totalDays[1] - 1 : 29;
