@@ -13,7 +13,7 @@ window.onload = function()
 	days.push(getDate(1)[0]);
 	data.data.labels = days;
 
-	fetch("https://discordbd.000webhostapp.com/get?k=&e=json&f=shadesCommandsActivity").then((d) => d.json()).then((d) => {
+	fetch("https://discorddb.000webhostapp.com/get?k=&e=json&f=shadesCommandsActivity").then((d) => d.json()).then((d) => {
 		let commands = [ [ ], [ ] ];
 
 		for (let i = 0; i <= totalDays; i++)
