@@ -10,7 +10,7 @@ window.onload = function()
 	days.push(getDate(1)[0]);
 	data.data.labels = days;
 
-	fetch("https://discbotdb.000webhostapp.com/get?k=&f=b_serveractivity").then((d) => d.json()).then((d) => {
+	fetch("https://discordbd.000webhostapp.com/get?k=&e=json&f=serverActivity").then((d) => d.json()).then((d) => {
 		let commands = [ [ ], [ ] ];
 
 		for (let i = 0; i <= totalDays; i++)
@@ -31,9 +31,9 @@ window.onload = function()
 				data: commands[1]
 			}
 		];
-	
+
 		loaded = create();
-	});	
+	});
 }
 window.onkeypress = function(k){
 	if (!loaded) return;
