@@ -27,7 +27,7 @@ window.onload = function()
 			let modules = [ ];
 
 			// Add all modules
-			for (let ls of e)
+			for (let ls of d)
 				for (let m in ls)
 					if (!modules[m])
 						modules[m] = [ ];
