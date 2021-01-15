@@ -1,9 +1,17 @@
 function hexToRGBA(hex, alpha) {
-    let r = parseInt(hex.slice(1, 3), 16),
-    g = parseInt(hex.slice(3, 5), 16),
-    b = parseInt(hex.slice(5, 7), 16);
+	let r = parseInt(hex.slice(1, 3), 16),
+	g = parseInt(hex.slice(3, 5), 16),
+	b = parseInt(hex.slice(5, 7), 16);
 
-    return "rgba(" + r + ", " + g + ", " + b + ", .3)";
+	return "rgba(" + r + ", " + g + ", " + b + ", .3)";
+}
+
+function randomBrightColor() {
+	let colorStr = `hsla(${Math.floor(Math.random()*360)}, 100%, 70%, `;
+	return [
+		colorStr + '1)',
+		colorStr + '.3)'
+	];
 }
 
 function getDate(quantity = 1, dir = 1, includeCurrent = false) {
@@ -39,6 +47,11 @@ function getData() {
 					pointRadius: 1.5,
 					pointHitRadius: 10
 				},
+			},
+			legend: {
+				labels: {
+					fontColor: "#FFFFFF"
+				}
 			}
 		}
 	}
