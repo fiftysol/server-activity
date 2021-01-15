@@ -7,10 +7,10 @@ var command = document.location.search.match(/[?&]cmd=(\S+)/);
 command = command ? command[1] : null;
 
 function getGMapRandomColor(alpha) {
-	let colorStr = `hsla('${Math.floor(Math.random()*360)}', 100%, 70%, `;
+	let colorStr = `hsla(${Math.floor(Math.random()*360)}, 100%, 70%, `;
 	return [
-		colorStr + ' 1)',
-		colorStr + ' .3)'
+		colorStr + '1)',
+		colorStr + '.3)'
 	];
 }
 
@@ -46,6 +46,7 @@ window.onload = function()
 			for (let m in modules)
 			{
 				let color = getGMapRandomColor(1);
+				console.log(color);
 				datasets.push({
 					label: "#" + m,
 					backgroundColor: color[1],
