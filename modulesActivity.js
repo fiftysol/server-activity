@@ -6,14 +6,6 @@ var data = getData();
 var command = document.location.search.match(/[?&]cmd=(\S+)/);
 command = command ? command[1] : null;
 
-function getGMapRandomColor(alpha) {
-	let colorStr = `hsla(${Math.floor(Math.random()*360)}, 100%, 70%, `;
-	return [
-		colorStr + '1)',
-		colorStr + '.3)'
-	];
-}
-
 window.onload = function()
 {
 	fetch("https://discorddb.000webhostapp.com/get?k=&e=json&f=moduleListActivity")
@@ -32,9 +24,11 @@ window.onload = function()
 					if (!modules[m])
 						modules[m] = [ ];
 
+			let moduleKeys = Object.keys(modules);
+
 			// Add values per registry
 			let labels = [ ];
-			for (let registryIndex = 0; registryIndex < Object.keys(modules).length - 1; registryIndex++)
+			for (let registryIndex = 0; registryIndex < moduleKeys.length - 1; registryIndex++)
 			{
 				let r = d[registryIndex];
 				for (let m in modules)
@@ -43,9 +37,9 @@ window.onload = function()
 			}
 
 			let datasets = [ ];
-			for (let m in modules)
+			for (let m of moduleKeys.sort())
 			{
-				let color = getGMapRandomColor(1);
+				let color = randomBrightColor();
 				datasets.push({
 					label: "#" + m,
 					backgroundColor: color[1],
