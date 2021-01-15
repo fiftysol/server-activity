@@ -36,7 +36,7 @@ window.onload = function()
 			let labels = [ ];
 			for (let registryIndex = 0; registryIndex < Object.keys(modules).length - 1; registryIndex++)
 			{
-				let r = e[registryIndex];
+				let r = d[registryIndex];
 				for (let m in modules)
 					modules[m].push(r[m] || 0);
 				labels.push("-");
