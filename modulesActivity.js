@@ -46,7 +46,6 @@ window.onload = function()
 			for (let m in modules)
 			{
 				let color = getGMapRandomColor(1);
-				console.log(color);
 				datasets.push({
 					label: "#" + m,
 					backgroundColor: color[1],
