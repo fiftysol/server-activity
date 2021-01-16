@@ -15,7 +15,7 @@ window.onload = function()
 		})
 		.then((d) => JSON.parse(d))
 		.then((d) => {
-			// [ {"name": qty}, {}, ... ]
+			// [ {"#name": qty}, {}, ... ]
 			let modules = [ ];
 
 			// Add all modules
@@ -41,7 +41,7 @@ window.onload = function()
 			{
 				let color = randomBrightColor();
 				datasets.push({
-					label: "#" + m,
+					label: m,
 					backgroundColor: color[1],
 					borderColor: color[0],
 					data: modules[m]
