@@ -28,7 +28,7 @@ window.onload = function()
 
 			// Add values per registry
 			let labels = [ ];
-			for (let registryIndex = 0; registryIndex < moduleKeys.length - 1; registryIndex++)
+			for (let registryIndex = 0; registryIndex < d.length; registryIndex++)
 			{
 				let r = d[registryIndex];
 				for (let m in modules)
