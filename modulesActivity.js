@@ -19,25 +19,33 @@ window.onload = function()
 			let modules = [ ];
 
 			// Add all modules
-			for (let ls of d)
-				for (let m in ls)
-					if (!modules[m])
+			let labels = [ ];
+			for (let registryIndex = 0; registryIndex < d.length; registryIndex++)
+			{
+				let hasTimestamp = false;
+				for (let m in d[registryIndex])
+					if (m == "_t")
+					{
+						labels.push(new Date(d[registryIndex][m] * 1000).toISOString().slice(0, 19));
+						hasTimestamp = true;
+					}
+					else if (!modules[m])
 						modules[m] = [ ];
 
-			let moduleKeys = Object.keys(modules);
+				if (!hasTimestamp)
+					labels.push('-');
+			}
 
 			// Add values per registry
-			let labels = [ ];
 			for (let registryIndex = 0; registryIndex < d.length; registryIndex++)
 			{
 				let r = d[registryIndex];
 				for (let m in modules)
 					modules[m].push(r[m] || 0);
-				labels.push("-");
 			}
 
 			let datasets = [ ];
-			for (let m of moduleKeys.sort())
+			for (let m of Object.keys(modules).sort())
 			{
 				let color = randomBrightColor();
 				datasets.push({
