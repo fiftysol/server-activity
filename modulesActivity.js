@@ -19,7 +19,7 @@ window.onload = function()
 			let modules = [ ];
 
 			// Add all modules
-			let labels = [ ];
+			let labels = [ ], totalCountByModule = { };
 			for (let registryIndex = 0; registryIndex < d.length; registryIndex++)
 			{
 				let hasTimestamp = false;
@@ -30,18 +30,28 @@ window.onload = function()
 						hasTimestamp = true;
 					}
 					else if (!modules[m])
+					{
 						modules[m] = [ ];
+						totalCountByModule[m] = 0;
+					}
 
 				if (!hasTimestamp)
 					labels.push('-');
 			}
 
 			// Add values per registry
+			let totalCount = 0;
 			for (let registryIndex = 0; registryIndex < d.length; registryIndex++)
 			{
 				let r = d[registryIndex];
 				for (let m in modules)
-					modules[m].push(r[m] || 0);
+				{
+					let value = r[m] || 0;
+					modules[m].push(value);
+
+					totalCountByModule[m] += value;
+					totalCount += value;
+				}
 			}
 
 			let datasets = [ ];
@@ -59,6 +69,15 @@ window.onload = function()
 			data.data.labels = labels;
 			data.data.datasets = datasets;
 			loaded = create();
+
+			let averageByModule = [ ];
+			for (let m in modules)
+				averageByModule.push([m, (totalCountByModule[m] / totalCount) * 100]);
+			averageByModule.sort((a, b) => { return b[1] - a[1] })
+
+			document.getElementById("percent").innerHTML = averageByModule.map((m) => {
+				return `<B>${m[0].padEnd(15, ' ')}</B>: ${m[1].toFixed(3).toString().padStart(7, '0')}%`;
+			}).join("<br>");
 		});
 }
 window.onkeypress = function(k){
