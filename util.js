@@ -42,7 +42,7 @@ function getData() {
 			elements: {
 				line: {
 					fill: false,
-					tension: .2,
+					tension: 0.2,
 					borderWidth: 3,
 					pointRadius: 1.5,
 					pointHitRadius: 10
@@ -52,7 +52,14 @@ function getData() {
 				labels: {
 					fontColor: "#FFFFFF"
 				}
-			}
+			},
+			animation: {
+				duration: 0
+			},
+			hover: {
+				animationDuration: 0
+			},
+			responsiveAnimationDuration: 0
 		}
 	}
 }
