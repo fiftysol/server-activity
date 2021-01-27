@@ -3,8 +3,18 @@ var fill = false;
 
 var data = getData();
 
-var command = document.location.search.match(/[?&]cmd=(\S+)/);
-command = command ? command[1] : null;
+var lastRegistries = document.location.search.match(/[?&]max=(\d+)/);
+if (lastRegistries)
+	lastRegistries = lastRegistries[1];
+
+var whitelistModules = document.location.search.match(/[?&]modules?=([^&]+)/);
+if (whitelistModules)
+{
+	let tmp	= { };
+	for (let name of whitelistModules[1].split(','))
+		tmp["#" + name] = true;
+	whitelistModules = tmp;
+}
 
 window.onload = function()
 {
@@ -17,10 +27,11 @@ window.onload = function()
 		.then((d) => {
 			// [ {"#name": qty}, {}, ... ]
 			let modules = [ ];
+			lastRegistries = (lastRegistries ?  d.length - lastRegistries : 0)
 
 			// Add all modules
 			let labels = [ ], totalCountByModule = { };
-			for (let registryIndex = 0; registryIndex < d.length; registryIndex++)
+			for (let registryIndex = lastRegistries; registryIndex < d.length; registryIndex++)
 			{
 				let hasTimestamp = false;
 				for (let m in d[registryIndex])
@@ -29,7 +40,7 @@ window.onload = function()
 						labels.push(new Date(d[registryIndex][m] * 1000).toISOString().slice(0, 19));
 						hasTimestamp = true;
 					}
-					else if (!modules[m])
+					else if (!modules[m] && (!whitelistModules || whitelistModules[m]))
 					{
 						modules[m] = [ ];
 						totalCountByModule[m] = 0;
@@ -41,7 +52,7 @@ window.onload = function()
 
 			// Add values per registry
 			let totalCount = 0;
-			for (let registryIndex = 0; registryIndex < d.length; registryIndex++)
+			for (let registryIndex = lastRegistries; registryIndex < d.length; registryIndex++)
 			{
 				let r = d[registryIndex];
 				for (let m in modules)
