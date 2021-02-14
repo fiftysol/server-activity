@@ -12,7 +12,7 @@ window.onload = function()
 
 	data.options.legend = { display: false };
 
-	fetch("https://cors-anywhere.herokuapp.com/https://discorddb.000webhostapp.com/get?k=&e=json&f=serverActivity").then((d) => d.json()).then((d) => {
+	fetch("https://bolo-cors.herokuapp.com/https://discorddb.000webhostapp.com/get?k=&e=json&f=serverActivity").then((d) => d.json()).then((d) => {
 		let members = [ ];
 
 		for (let i = 0; i <= totalDays; i++)

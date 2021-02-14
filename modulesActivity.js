@@ -18,7 +18,7 @@ if (whitelistModules)
 
 window.onload = function()
 {
-	fetch("https://discorddb.000webhostapp.com/get?k=&e=json&f=moduleListActivity")
+	fetch("https://bolo-cors.herokuapp.com/https://discorddb.000webhostapp.com/get?k=&e=json&f=moduleListActivity")
 		.then((d) => d.text())
 		.then((d) => {
 			return "[" + d.slice(0, -1) + "]"
